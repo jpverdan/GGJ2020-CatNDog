@@ -8,6 +8,7 @@ public class Item : MonoBehaviour
     public Parte[] listaDePartes;
     public float raioSpawn;
     public Collider2D spawnArea;
+    public LocalItem localItem;
 
     // Start is called before the first frame update
     void Start()
@@ -18,13 +19,9 @@ public class Item : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            Quebrar();        
-        }
     }
 
-    void Quebrar()
+    public void Quebrar()
     {
         GetComponent<SpriteRenderer>().enabled = false;
         foreach (var _parte in listaDePartes)
@@ -39,6 +36,11 @@ public class Item : MonoBehaviour
         float _x = Random.Range(spawnArea.bounds.min.x, spawnArea.bounds.max.x);
         float _y = Random.Range(spawnArea.bounds.min.y, spawnArea.bounds.max.y);
         return spawnArea.ClosestPoint(new Vector2(_x, _y));
+    }
+
+    public LocalItem GetLocalItem()
+    {
+        return localItem;
     }
     
 }

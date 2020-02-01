@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Parte
   - LocalItem
+  - Item
   layers:
   - Default
   - TransparentFX

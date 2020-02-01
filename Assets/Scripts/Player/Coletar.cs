@@ -18,7 +18,7 @@ public class Coletar : MonoBehaviour {
 
     private void Update() {
 
-        if(Input.GetKeyDown(KeyCode.Z) && _parteSelecionada != null)
+        if(Input.GetButtonDown("Grab") && _parteSelecionada != null)
         {
             if (_inventario.Count == 0)
             {
@@ -38,7 +38,7 @@ public class Coletar : MonoBehaviour {
             }
         }
 
-        if(Input.GetKeyDown(KeyCode.C) && _localItemSelecionado != null)
+        if(Input.GetButtonDown("Put") && _localItemSelecionado != null)
         {
             if(_localItemSelecionado.LocalCerto(_inventario))
             {
@@ -50,7 +50,7 @@ public class Coletar : MonoBehaviour {
             }
         }
 
-        if(Input.GetKeyDown(KeyCode.X))
+        if(Input.GetButtonDown("Drop"))
         {
             DropPartes();
         }
