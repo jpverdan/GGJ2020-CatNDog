@@ -12,11 +12,17 @@ public class Move : MonoBehaviour
 
     Vector2 movement;
 
-
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
     void Update()
     {
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");       
+        animator.SetFloat("x_input", movement.x);
+        animator.SetFloat("y_input", movement.y);
+        animator.SetFloat("speed", movement.magnitude);
     }
 
     void FixedUpdate()

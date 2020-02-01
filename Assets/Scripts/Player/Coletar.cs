@@ -92,7 +92,7 @@ public class Coletar : MonoBehaviour {
 
     void ColetarParte(Parte _parte)
     {
-        _parte.GetComponent<SpriteRenderer>().enabled = false;
+        _parte.GetComponent<SpriteRenderer>().gameObject.SetActive(false);
         _inventario.Add(_parte);
     }
 
@@ -103,7 +103,7 @@ public class Coletar : MonoBehaviour {
             float _x = UnityEngine.Random.Range(-raioSpawn, raioSpawn);
             float _y = UnityEngine.Random.Range(-raioSpawn, raioSpawn);
             _parte.transform.position = transform.position + new Vector3(_x, _y, 0);
-            _parte.GetComponent<SpriteRenderer>().enabled = true;
+            _parte.GetComponent<SpriteRenderer>().gameObject.SetActive(true);
         }
         _inventario.Clear();
     }
