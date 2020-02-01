@@ -38,7 +38,7 @@ public class Item : MonoBehaviour
     {
         float _x = Random.Range(spawnArea.bounds.min.x, spawnArea.bounds.max.x);
         float _y = Random.Range(spawnArea.bounds.min.y, spawnArea.bounds.max.y);
-        return new Vector2(_x, _y);
+        return spawnArea.ClosestPoint(new Vector2(_x, _y));
     }
     
 }
