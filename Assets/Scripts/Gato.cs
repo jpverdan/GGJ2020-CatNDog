@@ -18,6 +18,8 @@ public class Gato : MonoBehaviour
 
     IAstarAI _agent;
 
+    Animator _anim;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +27,7 @@ public class Gato : MonoBehaviour
         GetAllItems();
         _coolDownToBreakItem = timeToBreakItemInSeconds;
         _seeker = GetComponent<Seeker>();
+        _anim = GetComponent<Animator>();
     }
 
 
@@ -55,6 +58,11 @@ public class Gato : MonoBehaviour
             default:
                 break;
         }
+
+        _anim.SetFloat("Horizontal", _agent.velocity.x);
+        _anim.SetFloat("Vertical", _agent.velocity.y);
+        _anim.SetFloat("Speed", _agent.velocity.sqrMagnitude);
+        
     }
 
     IEnumerator GoingToBreakItem()
