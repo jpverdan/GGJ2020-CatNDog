@@ -7,6 +7,7 @@ public class Item : MonoBehaviour
 
     public Parte[] listaDePartes;
     public float raioSpawn;
+    public Collider2D spawnArea;
 
     // Start is called before the first frame update
     void Start()
@@ -28,15 +29,16 @@ public class Item : MonoBehaviour
         GetComponent<SpriteRenderer>().enabled = false;
         foreach (var _parte in listaDePartes)
         {
-            float _x = Random.Range(-raioSpawn, raioSpawn);
-            float _y = Random.Range(-raioSpawn, raioSpawn);
-            var _objeto = Instantiate(_parte, transform.position + new Vector3(_x, _y, 0), Quaternion.identity);
+            var _objeto = Instantiate(_parte, GetRandomPointInsideSpawnArea(), Quaternion.identity);
             _objeto.transform.parent = transform;
         }
     }
 
-    private void OnDrawGizmos() {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, raioSpawn);
+    Vector2 GetRandomPointInsideSpawnArea()
+    {
+        float _x = Random.Range(spawnArea.bounds.min.x, spawnArea.bounds.max.x);
+        float _y = Random.Range(spawnArea.bounds.min.y, spawnArea.bounds.max.y);
+        return new Vector2(_x, _y);
     }
+    
 }

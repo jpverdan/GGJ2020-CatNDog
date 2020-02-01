@@ -40,13 +40,10 @@ public class Coletar : MonoBehaviour {
 
         if(Input.GetKeyDown(KeyCode.C) && _localItemSelecionado != null)
         {
-            print("vc clicou C");
             if(_localItemSelecionado.LocalCerto(_inventario))
             {
-                print("retornou ao lugar certo");
                 if(_localItemSelecionado.TemTodasAsPartes(_inventario))
                 {
-                    print("tem todas as partes");
                     _localItemSelecionado.RetornaItem();
                     _inventario.Clear();
                 }
