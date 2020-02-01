@@ -7,6 +7,7 @@ public class Coletar : MonoBehaviour {
 
     private List<Parte> _inventario = new List<Parte>();
     private Parte _parteSelecionada = null;
+    private LocalItem _localItemSelecionado = null;
     public float raioSpawn;
 
 
@@ -37,6 +38,20 @@ public class Coletar : MonoBehaviour {
             }
         }
 
+        if(Input.GetKeyDown(KeyCode.C) && _localItemSelecionado != null)
+        {
+            print("vc clicou C");
+            if(_localItemSelecionado.LocalCerto(_inventario))
+            {
+                print("retornou ao lugar certo");
+                if(_localItemSelecionado.TemTodasAsPartes(_inventario))
+                {
+                    print("tem todas as partes");
+                    _localItemSelecionado.RetornaItem();
+                }
+            }
+        }
+
         if(Input.GetKeyDown(KeyCode.X))
         {
             DropPartes();
@@ -50,6 +65,17 @@ public class Coletar : MonoBehaviour {
         {
             SelecionaParte(other.GetComponent<Parte>());
         }
+
+        if(other.CompareTag("LocalItem"))
+        {
+            SelecionaLocalItem(other.GetComponent<LocalItem>());
+        }
+    }
+
+    private void SelecionaLocalItem(LocalItem localItem)
+    {
+        _localItemSelecionado = localItem;
+        _localItemSelecionado.GetComponent<SpriteRenderer>().color = Color.black;
     }
 
     private void OnTriggerExit2D(Collider2D other) 
@@ -57,6 +83,11 @@ public class Coletar : MonoBehaviour {
         if (other.CompareTag("Parte"))
         {
             RemoveSelecaoParte(other.GetComponent<Parte>());
+        }
+
+        if(other.CompareTag("LocalItem"))
+        {
+            RemoveSelecaoLocalItem(other.GetComponent<LocalItem>());
         }
     }
 
@@ -91,6 +122,15 @@ public class Coletar : MonoBehaviour {
         {
         _parteSelecionada.GetComponent<SpriteRenderer>().color = _parteSelecionada.GetComponent<Parte>().corOriginal;
         _parteSelecionada = null;
+        }
+    }
+
+    private void RemoveSelecaoLocalItem(LocalItem localItem)
+    {
+        if(_localItemSelecionado != null)
+        {
+            _localItemSelecionado.GetComponent<SpriteRenderer>().color = _localItemSelecionado.GetComponent<LocalItem>().corOriginal;
+            _localItemSelecionado = null;
         }
     }
 

@@ -19,12 +19,13 @@ public class Item : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            Quebrar();
+            Quebrar();        
         }
     }
 
     void Quebrar()
     {
+        GetComponent<SpriteRenderer>().enabled = false;
         foreach (var _parte in listaDePartes)
         {
             float _x = Random.Range(-raioSpawn, raioSpawn);
