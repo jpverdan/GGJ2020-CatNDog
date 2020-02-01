@@ -6,7 +6,9 @@ using System.Collections.Generic;
 public class Coletar : MonoBehaviour {
 
     private List<Parte> _inventario = new List<Parte>();
+    private Parte _parteSelecionada = null;
     public float raioSpawn;
+
 
     private void Start() {
         
@@ -14,32 +16,50 @@ public class Coletar : MonoBehaviour {
 
 
     private void Update() {
-        
-    }
 
-    private void OnTriggerEnter2D(Collider2D other) {
-        print("pegouuuu");
-        if(other.CompareTag("Parte"))
+        if(Input.GetKeyDown(KeyCode.Z) && _parteSelecionada != null)
         {
-            if(_inventario.Count == 0)
+            if (_inventario.Count == 0)
             {
-                ColetarParte(other.GetComponent<Parte>());
+                ColetarParte(_parteSelecionada.GetComponent<Parte>());
             }
             else
             {
-                if(other.transform.parent == _inventario[0].transform.parent)
+                if (_parteSelecionada.transform.parent == _inventario[0].transform.parent)
                 {
-                    ColetarParte(other.GetComponent<Parte>());
+                    ColetarParte(_parteSelecionada.GetComponent<Parte>());
                 }
                 else
                 {
                     DropPartes();
-                    ColetarParte(other.GetComponent<Parte>());
+                    ColetarParte(_parteSelecionada.GetComponent<Parte>());
                 }
             }
+        }
 
+        if(Input.GetKeyDown(KeyCode.X))
+        {
+            DropPartes();
+        }
+        
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) 
+    {
+        if(other.CompareTag("Parte") && _parteSelecionada == null)
+        {
+            SelecionaParte(other.GetComponent<Parte>());
         }
     }
+
+    private void OnTriggerExit2D(Collider2D other) 
+    {
+        if (other.CompareTag("Parte"))
+        {
+            RemoveSelecaoParte(other.GetComponent<Parte>());
+        }
+    }
+
 
     void ColetarParte(Parte _parte)
     {
@@ -57,5 +77,26 @@ public class Coletar : MonoBehaviour {
             _parte.GetComponent<SpriteRenderer>().enabled = true;
         }
         _inventario.Clear();
+    }
+
+    void SelecionaParte(Parte _parte)
+    {
+        _parte.GetComponent<SpriteRenderer>().color = Color.black;
+        _parteSelecionada = _parte;
+    }
+
+    private void RemoveSelecaoParte(Parte parte)
+    {
+        if(_parteSelecionada != null)
+        {
+        _parteSelecionada.GetComponent<SpriteRenderer>().color = _parteSelecionada.GetComponent<Parte>().corOriginal;
+        _parteSelecionada = null;
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, raioSpawn);
     }
 }
