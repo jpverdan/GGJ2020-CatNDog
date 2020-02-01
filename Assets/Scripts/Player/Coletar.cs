@@ -48,6 +48,7 @@ public class Coletar : MonoBehaviour {
                 {
                     print("tem todas as partes");
                     _localItemSelecionado.RetornaItem();
+                    _inventario.Clear();
                 }
             }
         }
