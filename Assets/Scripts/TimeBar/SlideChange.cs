@@ -9,9 +9,11 @@ public class SlideChange : MonoBehaviour
     private float timeRemaining;
     [SerializeField] private float timerMax = 5f;
     public Slider slider;
+    private GameManager _gm;
 
     private void Start() {
         timeRemaining = timerMax;
+        _gm = FindObjectOfType<GameManager>();
     }
 
     void Update()
@@ -25,7 +27,7 @@ public class SlideChange : MonoBehaviour
 
         if(timeRemaining<=0)
         {
-            print("Dever de casa concluído!");           
+            _gm.TimeUp();          
         }
     }
 
