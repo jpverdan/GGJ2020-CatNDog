@@ -72,11 +72,6 @@ public class Coletar : MonoBehaviour {
         }
     }
 
-    private void SelecionaLocalItem(LocalItem localItem)
-    {
-        _localItemSelecionado = localItem;
-        _localItemSelecionado.GetComponent<SpriteRenderer>().color = highlightColor;
-    }
 
     private void OnTriggerExit2D(Collider2D other) 
     {
@@ -112,8 +107,8 @@ public class Coletar : MonoBehaviour {
 
     void SelecionaParte(Parte _parte)
     {
-        
-        _parte.GetComponent<SpriteRenderer>().color = highlightColor;
+
+        _parte.Highlight();
         _parteSelecionada = _parte;
     }
 
@@ -121,16 +116,22 @@ public class Coletar : MonoBehaviour {
     {
         if(_parteSelecionada != null)
         {
-        _parteSelecionada.GetComponent<SpriteRenderer>().color = _parteSelecionada.GetComponent<Parte>().corOriginal;
-        _parteSelecionada = null;
+            _parteSelecionada.RemoveHighlight();
+            _parteSelecionada = null;
         }
+    }
+
+    private void SelecionaLocalItem(LocalItem localItem)
+    {
+        _localItemSelecionado = localItem;
+        _localItemSelecionado.Highlight();
     }
 
     private void RemoveSelecaoLocalItem(LocalItem localItem)
     {
         if(_localItemSelecionado != null)
         {
-            _localItemSelecionado.GetComponent<SpriteRenderer>().color = _localItemSelecionado.GetComponent<LocalItem>().corOriginal;
+            _localItemSelecionado.RemoveHighlight();
             _localItemSelecionado = null;
         }
     }

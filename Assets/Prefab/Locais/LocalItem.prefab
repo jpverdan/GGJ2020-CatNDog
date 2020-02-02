@@ -149,3 +149,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 0}
   corOriginal: {r: 1, g: 1, b: 1, a: 1}
+  highlightBasePrefab: {fileID: 984549713366208414, guid: 173a711f0c3a9ad489cce476f31d403b,
+    type: 3}

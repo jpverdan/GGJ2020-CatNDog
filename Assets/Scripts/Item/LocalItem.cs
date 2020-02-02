@@ -9,6 +9,9 @@ public class LocalItem : MonoBehaviour {
     public delegate void ItemEvent(Item _item);
     public ItemEvent ReturnedItem;
 
+    public GameObject highlightBasePrefab;
+    private SpriteRenderer highlightSpriteComponent;
+
     private void Awake()
     {
         print(this.gameObject.name);
@@ -18,6 +21,11 @@ public class LocalItem : MonoBehaviour {
     private void Start()
     {
         GetComponent<SpriteRenderer>().color = corOriginal;
+        var obj = Instantiate(highlightBasePrefab, transform);
+        highlightSpriteComponent = obj.GetComponent<SpriteRenderer>();
+        highlightSpriteComponent.sprite = GetComponent<SpriteRenderer>().sprite;
+        highlightSpriteComponent.enabled = false;
+
     }
 
     public bool LocalCerto(List<Parte> listaDeColetados)
@@ -50,5 +58,14 @@ public class LocalItem : MonoBehaviour {
             Destroy(_parte.gameObject);
         }
     }
-    
+
+    public void Highlight()
+    {
+        highlightSpriteComponent.enabled = true;
+    }
+
+    public void RemoveHighlight()
+    {
+        highlightSpriteComponent.enabled = false;
+    }
 }
