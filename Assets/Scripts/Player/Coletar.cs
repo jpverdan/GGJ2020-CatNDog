@@ -10,6 +10,8 @@ public class Coletar : MonoBehaviour {
     private LocalItem _localItemSelecionado = null;
     public float raioSpawn;
 
+    public Color highlightColor;
+
 
     private void Start() {
         
@@ -73,7 +75,7 @@ public class Coletar : MonoBehaviour {
     private void SelecionaLocalItem(LocalItem localItem)
     {
         _localItemSelecionado = localItem;
-        _localItemSelecionado.GetComponent<SpriteRenderer>().color = Color.black;
+        _localItemSelecionado.GetComponent<SpriteRenderer>().color = highlightColor;
     }
 
     private void OnTriggerExit2D(Collider2D other) 
@@ -110,7 +112,8 @@ public class Coletar : MonoBehaviour {
 
     void SelecionaParte(Parte _parte)
     {
-        _parte.GetComponent<SpriteRenderer>().color = Color.black;
+        
+        _parte.GetComponent<SpriteRenderer>().color = highlightColor;
         _parteSelecionada = _parte;
     }
 
