@@ -1817,7 +1817,7 @@ PrefabInstance:
     - target: {fileID: 4670496677386770006, guid: 7e0c102f1eb4a6745baf6e4cfeb21d08,
         type: 3}
       propertyPath: raioSpawn
-      value: 2
+      value: 3.76
       objectReference: {fileID: 0}
     - target: {fileID: 4670496677386770006, guid: 7e0c102f1eb4a6745baf6e4cfeb21d08,
         type: 3}
@@ -1839,6 +1839,11 @@ PrefabInstance:
       propertyPath: highlightColor.a
       value: 0.627451
       objectReference: {fileID: 0}
+    - target: {fileID: 4670496677386770006, guid: 7e0c102f1eb4a6745baf6e4cfeb21d08,
+        type: 3}
+      propertyPath: spawnArea
+      value: 
+      objectReference: {fileID: 2083618110}
     - target: {fileID: 4864891414157018543, guid: 7e0c102f1eb4a6745baf6e4cfeb21d08,
         type: 3}
       propertyPath: m_LocalPosition.x

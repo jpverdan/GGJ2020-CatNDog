@@ -9,10 +9,8 @@ public class Coletar : MonoBehaviour {
     private Parte _parteSelecionada = null;
     private LocalItem _localItemSelecionado = null;
     public float raioSpawn;
-
-    public Color highlightColor;
-
-
+    public Collider2D spawnArea;
+    
     private void Start() {
         
     }
@@ -99,7 +97,7 @@ public class Coletar : MonoBehaviour {
         {
             float _x = UnityEngine.Random.Range(-raioSpawn, raioSpawn);
             float _y = UnityEngine.Random.Range(-raioSpawn, raioSpawn);
-            _parte.transform.position = transform.position + new Vector3(_x, _y, 0);
+            _parte.transform.position = spawnArea.ClosestPoint(transform.position + new Vector3(_x, _y, 0));
             _parte.GetComponent<SpriteRenderer>().gameObject.SetActive(true);
         }
         _inventario.Clear();
