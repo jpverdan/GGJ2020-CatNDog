@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8971293609193480425}
   - component: {fileID: 3191569491261065890}
   m_Layer: 0
-  m_Name: tilemap-objects_7
+  m_Name: highlightBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -66,8 +66,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1661469503
+  m_SortingLayer: -2
   m_SortingOrder: -1
   m_Sprite: {fileID: 9086493565630014172, guid: c9c29fd6f63d98a418cb612d5b4efc77,
     type: 3}

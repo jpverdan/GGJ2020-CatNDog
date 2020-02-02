@@ -41,9 +41,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Default
-    uniqueID: 0
+  - name: TileMap
+    uniqueID: 642331243
+    locked: 0
+  - name: LocalItem
+    uniqueID: 2633497793
     locked: 0
   - name: Itens
     uniqueID: 1016190101
+    locked: 0
+  - name: Default
+    uniqueID: 0
     locked: 0
