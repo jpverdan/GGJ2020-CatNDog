@@ -7,7 +7,7 @@ public class SlideChange : MonoBehaviour
 {
 
     private float timeRemaining;
-    private const float timerMax = 5f;
+    [SerializeField] private float timerMax = 5f;
     public Slider slider;
 
     private void Start() {
