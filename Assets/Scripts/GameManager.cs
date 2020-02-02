@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Text ScoreUI;
     private int _score = 0;
 
+    public RectTransform panel;
+
     int OneStar = 100;
     int TwoStars = 170;
     int ThreeStars = 230;
@@ -43,7 +45,21 @@ public class GameManager : MonoBehaviour
     public void TimeUp()
     {
         Time.timeScale = 0;
-        StartCoroutine(EndMapScoreUI());
+        PainelOsso();
+    }
+
+    void PainelOsso()
+    {
+        panel.gameObject.SetActive(true);
+        var list = GameObject.FindGameObjectsWithTag("Osso");
+        if (StarsFromScore() > 0){
+            for(var i = 1; i <= StarsFromScore(); i++)
+            {
+                list[i].gameObject.SetActive(true);
+            }
+
+        }
+        panel.Find("Text").GetComponent<Text>().text = "Score: " + _score.ToString();
     }
 
     int StarsFromScore()

@@ -7,6 +7,7 @@ TagManager:
   - Parte
   - LocalItem
   - Item
+  - Osso
   layers:
   - Default
   - TransparentFX
