@@ -10,9 +10,12 @@ public class Coletar : MonoBehaviour {
     private LocalItem _localItemSelecionado = null;
     public float raioSpawn;
     public Collider2D spawnArea;
+    private AudioSource audioSource;
+    public AudioClip somColetar;
+    public AudioClip somDropar;
     
     private void Start() {
-        
+        audioSource = GetComponent<AudioSource>();        
     }
 
 
@@ -87,12 +90,17 @@ public class Coletar : MonoBehaviour {
 
     void ColetarParte(Parte _parte)
     {
+        audioSource.PlayOneShot(somColetar);
         _parte.GetComponent<SpriteRenderer>().gameObject.SetActive(false);
         _inventario.Add(_parte);
     }
 
     void DropPartes()
     {
+        if(_inventario.Count==0) return;
+    
+        audioSource.PlayOneShot(somDropar);
+        
         foreach (var _parte in _inventario)
         {
             float _x = UnityEngine.Random.Range(-raioSpawn, raioSpawn);

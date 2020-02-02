@@ -9,6 +9,8 @@ public class Item : MonoBehaviour
     public float raioSpawn;
     public Collider2D spawnArea;
     [HideInInspector] public LocalItem localItem;
+    public AudioClip itemSomQuebrar;
+    private AudioSource audioSource;
 
     [SerializeField] private int _scoreValue = 0;
 
@@ -21,6 +23,7 @@ public class Item : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         _spriteRendererComponent = GetComponent<SpriteRenderer>();
         _origColor = _spriteRendererComponent.color;
         _ghostColor = _origColor;
@@ -38,7 +41,8 @@ public class Item : MonoBehaviour
     }
 
     public void Quebrar()
-    {
+    {   
+        audioSource.PlayOneShot(itemSomQuebrar);
         _placed = false;
         GetComponent<SpriteRenderer>().enabled = false;
         foreach (var _parte in listaDePartes)

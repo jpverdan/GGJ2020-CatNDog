@@ -5,6 +5,8 @@ public class LocalItem : MonoBehaviour {
 
     public Item item;
     public Color corOriginal;
+    public AudioClip somLocalErrado;
+    private AudioSource audioSource;
 
     public delegate void ItemEvent(Item _item);
     public ItemEvent ReturnedItem;
@@ -20,6 +22,7 @@ public class LocalItem : MonoBehaviour {
 
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         GetComponent<SpriteRenderer>().color = corOriginal;
         var obj = Instantiate(highlightBasePrefab, transform);
         highlightSpriteComponent = obj.GetComponent<SpriteRenderer>();
@@ -32,7 +35,16 @@ public class LocalItem : MonoBehaviour {
     {
         if(listaDeColetados.Count>0)
         {
-        return listaDeColetados[0].transform.parent == item.transform;
+            if(listaDeColetados[0].transform.parent == item.transform)
+            {
+                return true;
+
+            }else
+            {
+                audioSource.PlayOneShot(somLocalErrado);
+                return false;
+            }
+        
         }
         else
         {
