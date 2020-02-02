@@ -9,10 +9,8 @@ public class Coletar : MonoBehaviour {
     private Parte _parteSelecionada = null;
     private LocalItem _localItemSelecionado = null;
     public float raioSpawn;
-
-    public Color highlightColor;
-
-
+    public Collider2D spawnArea;
+    
     private void Start() {
         
     }
@@ -72,11 +70,6 @@ public class Coletar : MonoBehaviour {
         }
     }
 
-    private void SelecionaLocalItem(LocalItem localItem)
-    {
-        _localItemSelecionado = localItem;
-        _localItemSelecionado.GetComponent<SpriteRenderer>().color = highlightColor;
-    }
 
     private void OnTriggerExit2D(Collider2D other) 
     {
@@ -104,7 +97,7 @@ public class Coletar : MonoBehaviour {
         {
             float _x = UnityEngine.Random.Range(-raioSpawn, raioSpawn);
             float _y = UnityEngine.Random.Range(-raioSpawn, raioSpawn);
-            _parte.transform.position = transform.position + new Vector3(_x, _y, 0);
+            _parte.transform.position = spawnArea.ClosestPoint(transform.position + new Vector3(_x, _y, 0));
             _parte.GetComponent<SpriteRenderer>().gameObject.SetActive(true);
         }
         _inventario.Clear();
@@ -112,8 +105,8 @@ public class Coletar : MonoBehaviour {
 
     void SelecionaParte(Parte _parte)
     {
-        
-        _parte.GetComponent<SpriteRenderer>().color = highlightColor;
+
+        _parte.Highlight();
         _parteSelecionada = _parte;
     }
 
@@ -121,16 +114,22 @@ public class Coletar : MonoBehaviour {
     {
         if(_parteSelecionada != null)
         {
-        _parteSelecionada.GetComponent<SpriteRenderer>().color = _parteSelecionada.GetComponent<Parte>().corOriginal;
-        _parteSelecionada = null;
+            _parteSelecionada.RemoveHighlight();
+            _parteSelecionada = null;
         }
+    }
+
+    private void SelecionaLocalItem(LocalItem localItem)
+    {
+        _localItemSelecionado = localItem;
+        _localItemSelecionado.Highlight();
     }
 
     private void RemoveSelecaoLocalItem(LocalItem localItem)
     {
         if(_localItemSelecionado != null)
         {
-            _localItemSelecionado.GetComponent<SpriteRenderer>().color = _localItemSelecionado.GetComponent<LocalItem>().corOriginal;
+            _localItemSelecionado.RemoveHighlight();
             _localItemSelecionado = null;
         }
     }

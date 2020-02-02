@@ -2,15 +2,27 @@ using UnityEngine;
 
 public class Parte : MonoBehaviour {
 
-    public Color corOriginal;
+    
+    public GameObject highlightBasePrefab;
+    private SpriteRenderer highlightSpriteComponent;
+    public float highlightScale = 1.1f;
 
-
-    private void Start() {
-        GetComponent<SpriteRenderer>().color = corOriginal;
-        
+    private void Start()
+    {
+        var obj = Instantiate(highlightBasePrefab, transform);
+        obj.transform.localScale = new Vector3(highlightScale, highlightScale);
+        highlightSpriteComponent = obj.GetComponent<SpriteRenderer>();
+        highlightSpriteComponent.sprite = GetComponent<SpriteRenderer>().sprite;
+        highlightSpriteComponent.enabled = false;
     }
 
-    private void Update() {
-        
+    public void Highlight()
+    {
+        highlightSpriteComponent.enabled = true;
+    }
+
+    public void RemoveHighlight()
+    {
+        highlightSpriteComponent.enabled = false;
     }
 }

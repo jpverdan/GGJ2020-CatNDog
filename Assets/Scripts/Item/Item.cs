@@ -8,17 +8,23 @@ public class Item : MonoBehaviour
     public Parte[] listaDePartes;
     public float raioSpawn;
     public Collider2D spawnArea;
-    public LocalItem localItem;
+    [HideInInspector] public LocalItem localItem;
+
+    [SerializeField] private int _scoreValue = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
     void Update()
     {
+    }
+
+    public int GetScoreValue()
+    {
+        return _scoreValue;
     }
 
     public void Quebrar()
@@ -42,5 +48,5 @@ public class Item : MonoBehaviour
     {
         return localItem;
     }
-    
+
 }

@@ -97,3 +97,5 @@ MonoBehaviour:
   raioSpawn: 0
   spawnArea: {fileID: 0}
   localItem: {fileID: 0}
+  highlightBasePrefab: {fileID: 984549713366208414, guid: 173a711f0c3a9ad489cce476f31d403b,
+    type: 3}
