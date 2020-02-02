@@ -48,6 +48,7 @@ public class LocalItem : MonoBehaviour {
     public void RetornaItem()
     {
         item.GetComponent<SpriteRenderer>().enabled = true;
+        item.Place();
         ReturnedItem(item);
     }
 
@@ -62,10 +63,12 @@ public class LocalItem : MonoBehaviour {
     public void Highlight()
     {
         highlightSpriteComponent.enabled = true;
+        item.ShowGhostItem();
     }
 
     public void RemoveHighlight()
     {
         highlightSpriteComponent.enabled = false;
+        item.HideGhostItem();
     }
 }

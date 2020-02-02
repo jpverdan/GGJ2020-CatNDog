@@ -12,9 +12,19 @@ public class Item : MonoBehaviour
 
     [SerializeField] private int _scoreValue = 0;
 
+    Color _origColor;
+    Color _ghostColor;
+    SpriteRenderer _spriteRendererComponent;
+
+    bool _placed = true;
+
     // Start is called before the first frame update
     void Start()
     {
+        _spriteRendererComponent = GetComponent<SpriteRenderer>();
+        _origColor = _spriteRendererComponent.color;
+        _ghostColor = _origColor;
+        _ghostColor.a = .2f;
     }
 
     // Update is called once per frame
@@ -29,12 +39,34 @@ public class Item : MonoBehaviour
 
     public void Quebrar()
     {
+        _placed = false;
         GetComponent<SpriteRenderer>().enabled = false;
         foreach (var _parte in listaDePartes)
         {
             var _objeto = Instantiate(_parte, GetRandomPointInsideSpawnArea(), Quaternion.identity);
             _objeto.transform.parent = transform;
         }
+    }
+
+    public void Place()
+    {
+        _placed = true;
+        _spriteRendererComponent.color = _origColor;
+    }
+
+    public void ShowGhostItem()
+    {
+        if (_placed) return;
+        _spriteRendererComponent.enabled = true;
+        _spriteRendererComponent.color = _ghostColor;
+
+    }
+
+    public void HideGhostItem()
+    {
+        if (_placed) return;
+        _spriteRendererComponent.enabled = false;
+        _spriteRendererComponent.color = _origColor;
     }
 
     Vector2 GetRandomPointInsideSpawnArea()
