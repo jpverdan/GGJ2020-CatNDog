@@ -16,6 +16,9 @@ public class GameManager : MonoBehaviour
     int ThreeStars = 230;
     [SerializeField] private float _delayFinalScore = 5f;
 
+    public Image[] listPanelOsso;
+    public Text panelScore;
+
     void Start()
     {
         SubscribeToAllItems();
@@ -51,15 +54,16 @@ public class GameManager : MonoBehaviour
     void PainelOsso()
     {
         panel.gameObject.SetActive(true);
-        var list = GameObject.FindGameObjectsWithTag("Osso");
         if (StarsFromScore() > 0){
-            for(var i = 1; i <= StarsFromScore(); i++)
+            for(var i = 0; i <= StarsFromScore()-1; i++)
             {
-                list[i].gameObject.SetActive(true);
+                var cor = listPanelOsso[i].color;
+                cor.a = 1;
+                listPanelOsso[i].color = cor;
             }
 
         }
-        panel.Find("Text").GetComponent<Text>().text = "Score: " + _score.ToString();
+        panelScore.text = "Score: " + _score.ToString();
     }
 
     int StarsFromScore()
@@ -77,6 +81,17 @@ public class GameManager : MonoBehaviour
         {
             return 3;
         }
+    }
+    public void RestartMap()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void RestartGame()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(0);
     }
 
     IEnumerator EndMapScoreUI()

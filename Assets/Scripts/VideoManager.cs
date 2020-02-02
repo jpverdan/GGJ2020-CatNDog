@@ -14,7 +14,7 @@ public class VideoManager : MonoBehaviour
 
     public void MudaCena(VideoPlayer vp)
     {
-        SceneManager.LoadScene(2);      
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +1);      
     }
 
 }
