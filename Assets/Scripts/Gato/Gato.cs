@@ -72,14 +72,18 @@ public class Gato : MonoBehaviour
         {
             _cooldown -= .5f;
             yield return new WaitForSeconds(.5f);
-            print("Coroutine");
-
+            
         }
-        BreakItem(_itemToBreak);
+        _anim.SetTrigger("Hit");
         _coolDownToBreakItem = timeToBreakItemInSeconds;
         _catState = CatStates.WALKING_AROUND;
     }
 
+    // Activated by animation trigger
+    public void BreakItemFromAnim()
+    {
+        BreakItem(_itemToBreak);
+    }
     private void BreakItem(Item _item)
     {
         if (_listOfItems.Count == 0) return;
