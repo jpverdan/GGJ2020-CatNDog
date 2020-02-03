@@ -6,6 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public enum GameState { PLAY, PAUSE }
+
+    public GameState gameState = GameState.PLAY;
+
     [SerializeField] private Text ScoreUI;
     private int _score = 0;
 
@@ -21,6 +25,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        gameState = GameState.PLAY;
         SubscribeToAllItems();
     }
     
@@ -47,6 +52,7 @@ public class GameManager : MonoBehaviour
 
     public void TimeUp()
     {
+        gameState = GameState.PAUSE;
         Time.timeScale = 0;
         PainelOsso();
     }

@@ -25,7 +25,7 @@ public class SlideChange : MonoBehaviour
             timeRemaining -= Time.deltaTime;
         }
 
-        if(timeRemaining<=0)
+        if(timeRemaining<=0 && _gm.gameState == GameManager.GameState.PLAY)
         {
             _gm.TimeUp();          
         }

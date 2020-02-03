@@ -666,7 +666,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 463484649}
-  - component: {fileID: 463484648}
   - component: {fileID: 463484647}
   m_Layer: 0
   m_Name: MusicController
@@ -771,18 +770,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &463484648
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 463484646}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e26da3b79082cd41a4d2d95b8f19982, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &463484649
 Transform:
   m_ObjectHideFlags: 0
